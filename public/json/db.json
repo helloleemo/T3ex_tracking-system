@@ -1,0 +1,193 @@
+{
+  "data": {
+    "ShipmentInfo": {
+      "HAWBNo": "THI012403610",
+      "MAWBNo": "016-23794094",
+      "OriginCode": "TPE",
+      "DestCode": "IAH"
+    },
+    "Milestone": {
+      "BookingCreation": "2024年11月06日 17:39",
+      "CargoArrive": null,
+      "ETD": {
+        "FlightNo": "UA0872",
+        "OriginCode": "TPE",
+        "DestCode": "IAH",
+        "DateTime": "2024年11月09日 11:10"
+      },
+      "ATD": {
+        "ImageUrls": null,
+        "DateTime": null
+      },
+      "ETA": {
+        "FlightNo": "UA0872",
+        "OriginCode": "TPE",
+        "DestCode": "IAH",
+        "DateTime": "2024年11月09日 06:35"
+      },
+      "ATA": {
+        "ImageUrls": null,
+        "DateTime": null
+      },
+      "AirportPickup": {
+        "ImageUrls": null,
+        "DateTime": null
+      },
+      "Delivered": {
+        "ImageUrls": null,
+        "DateTime": null
+      },
+      "Pod": null
+    },
+    "ShipmentDetails": {
+      "ShipmentInfo": {
+        "HAWBNo": null,
+        "MAWBNo": "016-23794094",
+        "OriginCode": "TPE",
+        "DestCode": "IAH",
+        "OriginCity": "TAIPEI",
+        "OriginCountry": "TAIWAN",
+        "DestCity": "HOUSTON",
+        "DestCountry": "UNITED STATES",
+        "ImageUrl": ""
+      },
+      "ShipDate": "2024-11-09 11:10",
+      "TradingType": "EXW",
+      "Payment": "Collect",
+      "Dimensions": [
+        {
+          "PCS": 1,
+          "Length": 98,
+          "Width": 48,
+          "Height": 45,
+          "VW": "35.28"
+        }
+      ],
+      "Package": {
+        "PKG": 1,
+        "PKG_UNIT": "PLT",
+        "GW": "288.00",
+        "GW_UNIT": "KGS",
+        "VW": "35.00",
+        "VW_UNIT": "KGS",
+        "CW": "288.00",
+        "CW_UNIT": "KGS"
+      },
+      "ShipperInfo": {
+        "Name": "NYTAPS TAIWAN CORP.",
+        "Address": "36, BEN GONG RD., GANGSHAN DIST., KAOHSIUNG CITY 80658, TAIWAN (R.O.C.) ",
+        "City": "TWKHH",
+        "Country": "TW",
+        "Fax": "07-333-3687"
+      },
+      "ConsigneeInfo": {
+        "Name": "DERRY ENTERPRISES INC DBA FIELD FASTENER SUPPLY COMPANY ",
+        "Address": null,
+        "City": "USMP5",
+        "Country": "US",
+        "Fax": null
+      }
+    },
+    "FlightSegments": [
+      {
+        "SeqNo": "1",
+        "FlightNo": "CX407",
+        "OriginCode": "TPE",
+        "DestCode": "HKG",
+        "ETD": "2024-10-17 07:51",
+        "ATD": null,
+        "ETA": "2024-10-17 10:02",
+        "ATA": null
+      },
+      {
+        "SeqNo": "2",
+        "FlightNo": "CX882",
+        "OriginCode": "HKG",
+        "DestCode": "LAX",
+        "ETD": "2024-10-17 16:42",
+        "ATD": null,
+        "ETA": "2024-10-17 14:56",
+        "ATA": null
+      }
+    ],
+    "Dimensions": [
+      {
+        "PCS": 5,
+        "Length": 53,
+        "Width": 30,
+        "Height": 23,
+        "VW": "30.47"
+      }
+    ],
+    "Documents": [
+      {
+        "FileType": "OTHER",
+        "Files": []
+      },
+      {
+        "FileType": "PACKING",
+        "Files": [
+          {
+            "FileName": "0280-INV_PK1.pdf",
+            "Guid": "21b01e3d-b552-412a-a9ef-41a6dcb12563"
+          },
+          {
+            "FileName": "0280-INV_PK2.pdf",
+            "Guid": "b7f4dfb2-7bb8-4b3f-b185-4bc6ae8076a8"
+          },
+          {
+            "FileName": "HKG_THI012500280_250113.pdf",
+            "Guid": "2b08de4b-85b9-44f9-9caa-3740b6d38402"
+          }
+        ]
+      },
+      {
+        "FileType": "INVOICE",
+        "Files": []
+      },
+      {
+        "FileType": "HAWB",
+        "Files": []
+      },
+      {
+        "FileType": "MAWB",
+        "Files": []
+      },
+      {
+        "FileType": "POD",
+        "Files": []
+      }
+    ],
+    "Pictures": [
+      {
+        "FileType": "POD",
+        "Files": []
+      },
+      {
+        "FileType": "DELIVERY",
+        "Files": [
+          {
+            "FileName": "AI2411001885_配送中_20241112122341_1.jpg",
+            "Guid": "06abca74-c7e9-4785-af4d-6a57489d8e2e"
+          },{
+            "FileName": "AI2411001885_配送中_20241112122341_1.jpg",
+            "Guid": "06abca74-c7e9-4785-af4d-6a57489d8e2e"
+          },{
+            "FileName": "AI2411001885_配送中_20241112122341_1.jpg",
+            "Guid": "06abca74-c7e9-4785-af4d-6a57489d8e2e"
+          }
+        ]
+      },
+      {
+        "FileType": "AIRPORT PICKUP",
+        "Files": []
+      },
+      {
+        "FileType": "WAREHOUSE",
+        "Files": []
+      }
+    ]
+  },
+  "code": "1",
+  "message": "Success"
+}

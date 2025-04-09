@@ -1,0 +1,55 @@
+{
+  "data": {
+    "Documents": [
+      {
+        "FileType": "OTHER",
+        "Files": []
+      },
+      {
+        "FileType": "PACKING",
+        "Files": []
+      },
+      {
+        "FileType": "INVOICE",
+        "Files": []
+      },
+      {
+        "FileType": "HAWB",
+        "Files": []
+      },
+      {
+        "FileType": "MAWB",
+        "Files": []
+      },
+      {
+        "FileType": "POD",
+        "Files": []
+      }
+    ],
+    "Pictures": [
+      {
+        "FileType": "POD",
+        "Files": []
+      },
+      {
+        "FileType": "DELIVERY",
+        "Files": [
+          {
+            "FileName": "AI2411001885_配送中_20241112122341_1.jpg",
+            "Guid": "06abca74-c7e9-4785-af4d-6a57489d8e2e"
+          }
+        ]
+      },
+      {
+        "FileType": "AIRPORT PICKUP",
+        "Files": []
+      },
+      {
+        "FileType": "WAREHOUSE",
+        "Files": []
+      }
+    ]
+  },
+  "code": "1",
+  "message": "Success"
+}
