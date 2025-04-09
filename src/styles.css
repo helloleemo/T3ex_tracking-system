@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.input {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  background-color: white;
+}
+.input:focus {
+  border-color: #3d3d3d;
+  outline: #3d3d3d;
+}
+.btn-outline {
+  border: 1px solid #b9b9b9;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 16px;
+  color: #3d3d3d;
+  padding: 2px 20px;
+  margin: 8px 0;
+  cursor: pointer;
+  width: 100%;
+}
+.btn-outline:hover {
+  background-color: #f6f6f6;
+  color: #3d3d3d;
+}
+.btn {
+  background-color: #3d3d3d;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 16px;
+  color: white;
+  padding: 5px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+.btn:hover {
+  background-color: #4d4d4d;
+}
+
+p {
+  margin: 5px 0;
+  cursor: default;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
