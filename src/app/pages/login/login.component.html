@@ -1,0 +1,149 @@
+<div class="container mx-auto max-w-screen-xl p-5 h-fit">
+  <div class="logo flex">
+    <img class="object-contain w-[100px]" src="t3ex-logo.svg" alt="logo" />
+    <div class="greeting pt-3 pl-3">
+      <p class="text-2xl font-semibold">Tracking your shipment...</p>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-2 gap-5 pt-20">
+    <!-- Input tracking number -->
+    <div class="trackingNum p-10 border-r-2 flex flex-col justify-center">
+      <p class="text-2xl font-semibold">
+        Track your shipment with tracking number
+      </p>
+      <p class="text-blackColor/50 text-sm pb-5">
+        Enter the tracking number to track your shipment
+      </p>
+      <div class="inputBox relative">
+        <input
+          (keydown.enter)="sendTrackingNumber()"
+          [(ngModel)]="trackingNumber"
+          (input)="checkValid($event)"
+          [style]="alertMessage != '' ? 'border: 1px solid #ff3434' : ''"
+          class="input cursor-text border border-red-500"
+          placeholder="ex.12345678"
+          type="text"
+        />
+
+        <mat-icon
+          (click)="sendTrackingNumber()"
+          class="absolute cursor-pointer right-2 top-1/2 -translate-y-1/2 fill-current text-blackColor"
+          >arrow_circle_right</mat-icon
+        >
+        <p class="absolute top-10 text-sm text-red-500">
+          {{ alertMessage }}
+        </p>
+        <!-- ---------------完成記得刪除這個--------------- -->
+        <p class="absolute text-sm text-white -top-7">（測試用）TECSHA126236</p>
+        <!-- ------------------------------------------- -->
+      </div>
+    </div>
+    <!---------- Login ---------->
+    @if (!this.isLogin) {
+    <div class="popUp frame flex flex-col bg-white p-10 rounded-md">
+      <p class="text-2xl font-semibold">Air Cargo Tracking System</p>
+      <p class="text-blackColor/50">Welcome back to our air tracking system</p>
+      <!-- account -->
+      <div class="inputBox pt-5">
+        <label for="account" class="text-sm font-semibold" for="account"
+          >Account</label
+        >
+        <input
+          (input)="typeAccount($event)"
+          [style]="typing ? '' : 'border: 1px solid #ff3434'"
+          [(ngModel)]="account"
+          id="account"
+          class="input cursor-text p-2 text-sm"
+          placeholder="Enter your account"
+          type="text"
+        />
+      </div>
+      <!-- password -->
+      <div class="inputBox pt-2">
+        <label for="password" class="text-sm font-semibold" for="password"
+          >Password</label
+        >
+        <input
+          (input)="typeAccount($event)"
+          [style]="typing ? '' : 'border: 1px solid #ff3434'"
+          [(ngModel)]="password"
+          id="password"
+          type="password"
+          class="input cursor-text"
+          placeholder="Enter your password"
+        />
+        <p class="absolute text-sm text-red-500">
+          {{ loginAlertMessage }}
+        </p>
+
+        <!-- remember -->
+        <div class="pt-10 flex justify-between items-center">
+          <div class="remember">
+            <input [(ngModel)]="rememberMe" type="checkbox" id="remember" />
+            <label class="pl-2 cursor-pointer" for="remember"
+              >Remember me</label
+            >
+          </div>
+          <!-- Languages -->
+          <!-- <select
+            name=""
+            id=""
+            class="border rounded-sm py-1 px-5 focus:border-blackColor focus:outline-none"
+          >
+            <option value="chinese">中文</option>
+            <option value="eng">English</option>
+          </select> -->
+        </div>
+
+        <!-- login btn -->
+        <!-- routerLink="/shipment-summary" -->
+        @if (loading) {
+        <div
+          class="btn cursor-pointer"
+          style="
+            margin-top: 30px;
+            padding: 7px;
+            cursor: auto;
+            background-color: black;
+            opacity: 0.5;
+          "
+        >
+          <div
+            class="mx-auto w-5 h-5 mt-[2px] border-2 border-white border-t-transparent rounded-full animate-spin"
+          ></div>
+        </div>
+        }@else {
+        <div
+          class="btn cursor-pointer"
+          matRipple
+          [matRippleColor]="rippleColor"
+          style="margin-top: 30px"
+        >
+          <div (click)="checkLogin()" class="cursor-pointer">Login</div>
+        </div>
+        }
+      </div>
+    </div>
+    }@else {
+    <div class="h-[450px] flex flex-col justify-center items-center">
+      <div class="w-[450px]">
+        <p class="text-blackColor text-2xl font-semibold">Hi {{ account }},</p>
+        <p class="text-blackColor text-xl">Welcome back!</p>
+        <div
+          class="cursor-pointer w-fit py-2 px-5 bg-black/70 text-white rounded-md"
+          routerLink="/shipment-list"
+          matRipple
+          [matRippleColor]="rippleColor"
+          style="margin-top: 30px"
+        >
+          <div class="cursor-pointer">View your all shipments</div>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>
+<div class="fixed bottom-0 w-full">
+  <app-footer class="pt-[200px] w-full"></app-footer>
+</div>

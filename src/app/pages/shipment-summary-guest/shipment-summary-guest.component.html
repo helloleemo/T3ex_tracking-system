@@ -1,0 +1,93 @@
+<app-header></app-header>
+<div [class]="loading ? 'h-[100svh]' : 'pb-[150px]'" class="bg-blackColor/5">
+  <div class="container mx-auto max-w-screen-xl p-3">
+    <div class="greeting py-3">
+      <p class="font-semibold text-3xl text-blackColor">Simple query</p>
+      <p class="text-blackColor/70">
+        Tracking your shipment by entering the tracking number.
+      </p>
+    </div>
+
+    <!-- Searshing -->
+    <div class="search">
+      <div class="search relative flex items-center w-[400px] pb-10">
+        <input
+          class="focus:outline-blackColor focus:bg-white p-1 pl-8 w-full rounded-md"
+          [(ngModel)]="trackingNumber"
+          placeholder="Enter your tracking number"
+          id="search"
+          type="text"
+        />
+        @if (loading) {
+        <div
+          class="w-[160px] h-8 bg-blackColor/60 text-white font-medium px-10 py-1 rounded-md ml-3"
+        >
+          <div
+            class="w-5 h-5 mt-[2px] ml-3 border-2 border-white border-t-transparent rounded-full animate-spin"
+          ></div>
+        </div>
+        } @else {
+        <div
+          matRipple
+          [matRippleColor]="rippleColor"
+          (click)="sendTrackingNumber()"
+          class="w-[160px] h-8 cursor-pointer bg-blackColor text-white font-medium px-10 py-1 rounded-md ml-3"
+        >
+          Search
+        </div>
+        }
+
+        <mat-icon
+          class="text-blackColor/60 absolute left-1 top-1/4 -translate-y-1/2"
+          >search</mat-icon
+        >
+      </div>
+    </div>
+    <!-- Empty state -->
+    @if (!hasData) {
+    <div class="h-[100vh]">
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col justify-center items-center"
+      >
+        <span
+          class="cursor-default hover:rotate-180 hover:text-blue-400 transition-all duration-700 material-symbols-outlined text-blackColor/50 text-[60px]"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="50px"
+            viewBox="0 -960 960 960"
+            width="50px"
+            fill="currentColor"
+          >
+            <path
+              d="M440-183v-274L200-596v274l240 139Zm80 0 240-139v-274L520-457v274Zm-40-343 237-137-237-137-237 137 237 137ZM160-252q-19-11-29.5-29T120-321v-318q0-22 10.5-40t29.5-29l280-161q19-11 40-11t40 11l280 161q19 11 29.5 29t10.5 40v318q0 22-10.5 40T800-252L520-91q-19 11-40 11t-40-11L160-252Zm320-228Z"
+            />
+          </svg>
+        </span>
+
+        <p
+          class="text-blackColor/50 text-xl font-semibold ml-3"
+          [innerHTML]="errorMessages"
+        ></p>
+      </div>
+    </div>
+    } @else {
+    <!-- Shipment processes -->
+    <div class="bg-white rounded-md">
+      <!-- Shipment details(processes) -->
+      <app-shipment-details-guest
+        [trackingNo]="trackingNumber"
+      ></app-shipment-details-guest>
+    </div>
+    <div class="bg-white rounded-md mt-3">
+      <!-- Shipment other details -->
+      <app-shipment-other-info-guest
+        [trackingNo]="trackingNumber"
+      ></app-shipment-other-info-guest>
+    </div>
+    }
+  </div>
+</div>
+
+<router-outlet></router-outlet>
+<app-footer></app-footer>

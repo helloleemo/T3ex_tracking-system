@@ -1,0 +1,90 @@
+<app-header [isLoginExpired]="isLoginExpired"></app-header>
+
+<div class="bg-blackColor/5">
+  <div class="container mx-auto max-w-screen-xl p-3">
+    <div class="greeting py-3">
+      <p class="font-semibold text-3xl text-blackColor">Hello {{ account }},</p>
+      <p class="text-blackColor">Tracking your shipment</p>
+    </div>
+
+    <!-- Menu -->
+    <div class="frame bg-white rounded-md p-10 pb-[100px] mb-[100px]">
+      <div class="process-menu flex justify-between mb-5 border-b-2">
+        <div class="flex gap-x-2 relative">
+          @for (item of selectedMenuOptions; track $index) {
+          <p
+            (click)="menuSelected(item.value)"
+            [class]="
+              selectedMenu === item.value
+                ? 'text-blackColor'
+                : 'text-blackColor/50'
+            "
+            class="cursor-pointer text-xl transition-all font-semibold hover:text-blackColor/90 py-0 pb-3 px-3 mr-1 m-0 border-transparent border-b-4"
+          >
+            {{ item.viewValue }}
+          </p>
+          }
+          <div
+            [class]="
+              !selectedMenu || selectedMenu === 0
+                ? 'absolute border-b-4 border-primary'
+                : selectedMenu === 1
+                ? 'absolute border-b-4 border-primary translate-x-[120px]'
+                : selectedMenu === 2
+                ? 'absolute border-b-4  border-primary translate-x-[250px]'
+                : 'absolute border-b-4'
+            "
+            class="transition-transform duration-200 pt-[42px] w-[120px]"
+          ></div>
+        </div>
+      </div>
+      <!-- mutiple search bar -->
+      <app-search-bar
+        [selectedMenu]="selectedMenu"
+        [totalPages]="totalPages"
+        (searchContentOutput)="getSearchListData($event)"
+      ></app-search-bar>
+
+      <!-- shipment list -->
+      <div class="shipmentList">
+        <app-list-table
+          (totalPages)="getTotalPages($event)"
+          [selectedMenuInner]="selectedMenu"
+          [searchContentsData]="searchListData"
+          (isLoginExpired)="isLoginCheck($event)"
+        ></app-list-table>
+      </div>
+    </div>
+    <!-- notice -->
+    <div class="notice">
+      <ul>
+        <li class="text-blackColor/50 text-sm">
+          1. The flowchart is for reference only and may be adjusted according
+          to the actual operation status.
+        </li>
+        <li class="text-blackColor/50 text-sm">
+          2. Only provide shipments that within the last three months
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+  <div></div>
+</div>
+
+<!-- Arrow to top -->
+<!-- upToTop -->
+<div
+  (click)="scrollToTop()"
+  [class]="
+    isShowArrow
+      ? 'opacity-100 translate-y-[190px] bg-primary/30 hover:bg-primary text-white cursor-pointer'
+      : 'opacity-0 cursor-default'
+  "
+  class="upToTop z-10 transition-all duration-200 fixed bottom-[250px] right-1/2 -translate-x-1/2 drop-shadow-xl h-[60px] w-[60px] p-[18px] rounded-full hover:scale-[1.2]"
+>
+  <mat-icon [class]="isShowArrow ? 'cursor-pointer' : 'cursor-default'"
+    >arrow_upward</mat-icon
+  >
+</div>
