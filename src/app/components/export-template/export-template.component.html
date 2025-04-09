@@ -1,0 +1,276 @@
+<!-- Title -->
+<div class="title flex gap-x-3">
+  <div class="logo pt-3">
+    <img style="width: 150px" src="t3ex-logo.png" alt="" />
+  </div>
+  <div class="title flex gap-1">
+    <p
+      style="white-space: nowrap"
+      class="font-bold text-2xl p-0 m-0 px-1 text-nowrap"
+    >
+      Cargo
+    </p>
+    <p
+      style="white-space: nowrap"
+      class="font-bold text-2xl p-0 m-0 px-1 text-nowrap"
+    >
+      Tracking
+    </p>
+    <p
+      style="white-space: nowrap"
+      class="font-bold text-2xl p-0 m-0 px-1 text-nowrap"
+    >
+      Report
+    </p>
+  </div>
+
+  <div class="printedDate pt-2 w-full">
+    <p class="text-right text-sm" style="color: rgb(134, 134, 134)">
+      Printed date: {{ formattedDate }}
+    </p>
+  </div>
+</div>
+<!-- details -->
+<div class="flex gap-1 justify-start">
+  <p class="text-xl font-bold pt-4 pb-1 mt-0 pr-2">Shipment</p>
+  <p class="text-xl font-bold pt-4 pb-1 mt-0 pr-2">details</p>
+</div>
+<div
+  class="flex justify-start items-start gap-5 pb-5 border-b-[1px] border-blackColor/20"
+>
+  <!-- 1 -->
+  <table class="w-1/3">
+    <tbody>
+      <tr class="p-0 align-top">
+        <td class="text-base font-bold p-0">HAWB&nbsp;No.</td>
+        <td class="text-base font-normal p-0 text-blackColor/60">
+          {{ ShipmentInfo.HAWBNo }}
+        </td>
+      </tr>
+      <tr class="p-0 align-top">
+        <td class="text-base font-bold p-0">MAWB&nbsp;No.</td>
+        <td class="text-base font-normal p-0 text-blackColor/60">
+          {{ ShipmentInfo.MAWBNo }}
+        </td>
+      </tr>
+
+      <tr class="p-0 align-top">
+        <td class="text-base font-bold p-0">Ship&nbsp;Date</td>
+        <td class="text-base font-normal p-0 text-blackColor/60">
+          {{ shipmentDetails.ShipDate }}
+        </td>
+      </tr>
+      <tr class="p-0 align-top">
+        <td class="text-base font-bold p-0">Trading&nbsp;Type</td>
+        <td class="text-base font-normal p-0 text-blackColor/60">
+          {{ shipmentDetails.TradingType }}
+        </td>
+      </tr>
+      <tr class="p-0 align-top">
+        <td class="text-base font-bold p-0">Payment</td>
+        <td class="text-base font-normal p-0 text-blackColor/60">
+          {{ shipmentDetails.Payment }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- 2 -->
+  <table class="w-1/3">
+    <tbody>
+      <tr class="p-0 align-top">
+        <td class="text-base font-bold p-0">PKG</td>
+        <td class="text-base font-normal p-0 text-blackColor/60">
+          {{ Package.PKG }}&nbsp;{{ Package.PKG_UNIT }}
+        </td>
+      </tr>
+      <tr class="p-0 align-top">
+        <td class="text-base font-bold p-0">GW</td>
+        <td class="text-base font-normal p-0 text-blackColor/60">
+          {{ Package.GW }}&nbsp;{{ Package.GW_UNIT }}
+        </td>
+      </tr>
+      <tr class="p-0 align-top">
+        <td class="text-base font-bold p-0">VW</td>
+        <td class="text-base font-normal p-0 text-blackColor/60">
+          {{ Package.VW }}&nbsp;{{ Package.VW_UNIT }}
+        </td>
+      </tr>
+      <tr class="p-0 align-top">
+        <td class="text-base font-bold p-0">CW</td>
+        <td class="text-base font-normal p-0 text-blackColor/60">
+          {{ Package.CW }}&nbsp;{{ Package.CW_UNIT }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- 3 -->
+  <ul class="w-1/3">
+    <li class="p-0">
+      <p class="p-0 m-0 text-base font-bold">Origin</p>
+      <p class="p-0 m-0 relative text-base font-normal text-blackColor/60">
+        <span class="font-bold">{{ ShipmentInfo.OriginCode }}</span
+        >&nbsp;-&nbsp;
+        <span
+          >{{ ShipmentInfo.OriginCity }},&nbsp;{{
+            ShipmentInfo.OriginCountry
+          }}</span
+        >
+      </p>
+    </li>
+    <li class="text-base font-bold p-0">
+      <p class="p-0 m-0 text-base font-bold">Destination</p>
+      <p class="p-0 m-0 relative text-base font-normal text-blackColor/60">
+        <span class="font-bold">
+          {{ ShipmentInfo.DestCode }}
+        </span>
+        -
+        <span
+          >{{ ShipmentInfo.DestCity }},&nbsp;{{
+            ShipmentInfo.DestCountry
+          }}</span
+        >
+      </p>
+    </li>
+  </ul>
+</div>
+
+<!-- Milestones, flight, dimensions -->
+<div class="flex flex-col pb-8 border-b-[1px] border-blackColor/20">
+  <div class="milestones flex flex-col w-full">
+    <p class="text-xl font-bold pt-4 pb-2 mt-0 pr-2">Milestones</p>
+
+    @if (milestones.length == [] || milestones == null || milestones ==
+    undefined) {
+    <p style="color: gray" class="font-normal pb-4 mt-0">
+      No milestones available for this shipment.
+    </p>
+    } @else {
+    <table class="border-collapse">
+      <thead>
+        <tr
+          class="text-blackColor/90 font-semibold"
+          style="background-color: rgb(245, 245, 245)"
+        >
+          <th class="px-1 pb-4 text-start w-auto"></th>
+          <th class="px-1 pb-4 text-start w-auto">Milestone</th>
+          <th class="px-1 pb-4 text-start w-auto">Date&nbsp;and&nbsp;Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of milestones; track $index) {
+        <tr class="text-blackColor/70 font-normal border-b">
+          <td class="px-1 pb-4 text-start w-[25px]">{{ $index + 1 }}</td>
+          <td class="px-1 pb-4 text-start">{{ item.Milestone }}</td>
+          <td class="px-1 pb-4 text-start">{{ item.DateTime }}</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+    }
+  </div>
+  <!-- Flight Info -->
+  <div class="dimensions flex flex-col w-full">
+    <div class="flex gap-1 justify-start">
+      <p class="text-xl font-bold pt-4 pb-2 mt-0 pr-2">Flight</p>
+      <p class="text-xl font-bold pt-4 pb-2 mt-0 pr-2">Information</p>
+    </div>
+    @if (flightSegments.length == [] || flightSegments == null || flightSegments
+    == undefined) {
+    <p style="color: gray" class="font-normal pb-4 mt-0">
+      No flight information available for this shipment.
+    </p>
+    } @else {
+    <table class="w-full border-collapse table-auto">
+      <thead>
+        <tr
+          class="text-blackColor/90 font-semibold"
+          style="background-color: rgb(245, 245, 245)"
+        >
+          <th class="px-1 pb-4 text-start"></th>
+          <th class="px-1 pb-4 text-start">Flight No.</th>
+          <th class="px-1 pb-4 text-start">From</th>
+          <th class="px-1 pb-4 text-start">To</th>
+          <th class="px-1 pb-4 text-start">ETD</th>
+          <th class="px-1 pb-4 text-start">ATD</th>
+          <th class="px-1 pb-4 text-start">ETA</th>
+          <th class="px-1 pb-4 text-start">ATA</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of flightSegments.slice(0,3); track $index) {
+        <tr class="text-blackColor/70 font-normal border-b">
+          <td class="px-1 pb-4 text-start">{{ item.SeqNo }}</td>
+          <td class="px-1 pb-4 text-start">{{ item.FlightNo }}</td>
+          <td class="px-1 pb-4 text-start">{{ item.OriginCode }}</td>
+          <td class="px-1 pb-4 text-start">{{ item.DestCode }}</td>
+          <td class="px-1 pb-4 text-start">{{ item.ETD }}</td>
+          <td class="px-1 pb-4 text-start">{{ item.ATD }}</td>
+          <td class="px-1 pb-4 text-start">{{ item.ETA }}</td>
+          <td class="px-1 pb-4 text-start">{{ item.ATA }}</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+    }
+  </div>
+
+  <!-- Dimensions -->
+  <div class="dimensions flex flex-col w-full">
+    <p class="text-xl font-bold pt-4 pb-2 mt-0 pr-2">Dimensions</p>
+    @if (dimensions.length == [] || dimensions == null || dimensions ==
+    undefined) {
+    <p style="color: gray" class="font-normal pb-4 mt-0">
+      No dimensions available for this shipment.
+    </p>
+    } @else {
+    <table class="border-collapse">
+      <thead>
+        <tr
+          class="text-blackColor/90 font-semibold"
+          style="background-color: rgb(245, 245, 245)"
+        >
+          <th class="px-1 pb-4 text-start w-[25px]"></th>
+          <th class="px-1 pb-4 text-center w-auto">PCS</th>
+          <th class="px-1 pb-4 text-center w-auto">Length</th>
+          <th class="px-1 pb-4 text-center w-auto">Width</th>
+          <th class="px-1 pb-4 text-center w-auto">Height</th>
+          <th class="px-1 pb-4 text-center w-auto">VW</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of dimensions.slice(0,5); track $index) {
+        <tr class="text-blackColor/70 font-normal border-b">
+          <td class="px-1 pb-4 text-center w-[25px] font-semibold">
+            {{ $index + 1 }}
+          </td>
+          <td class="px-1 pb-4 text-center w-auto">
+            {{ item.PCS }}
+          </td>
+          <td class="px-1 pb-4 text-center w-auto">
+            {{ item.Length }}
+          </td>
+          <td class="px-1 pb-4 text-center w-auto">
+            {{ item.Width }}
+          </td>
+          <td class="px-1 pb-4 text-center w-auto">
+            {{ item.Height }}
+          </td>
+          <td class="px-1 pb-4 text-center w-auto">
+            {{ item.VW }}
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+    }
+  </div>
+</div>
+
+<p class="text-sm" style="color: rgb(134, 134, 134)">
+  *Cargo status is subject to change, and we recommend verifying the latest
+  information through our system.
+</p>
+<p class="text-sm" style="color: rgb(134, 134, 134)">
+  © 2025. T3EX Global Holdings Corp. Unauthorized use or distribution is
+  prohibited.
+</p>

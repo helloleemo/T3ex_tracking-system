@@ -1,0 +1,95 @@
+<div
+  class="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-blackColor/50 z-20"
+>
+  <div class="frame flex flex-col bg-white p-10 rounded-md">
+    <p class="text-2xl font-semibold">Air Cargo Tracking System</p>
+    <p class="text-blackColor/50">Welcome back to our air tracking system</p>
+
+    <!-- account -->
+    <div class="inputBox pt-5">
+      <label for="account" class="text-sm font-semibold" for="account"
+        >Account</label
+      >
+      <input
+        (input)="typeAccount($event)"
+        [style]="typing ? '' : 'border: 1px solid #ff3434'"
+        [(ngModel)]="account"
+        id="account"
+        class="input cursor-text p-2 text-sm"
+        placeholder="Enter your account"
+        type="text"
+      />
+    </div>
+    <!-- password -->
+    <div class="inputBox pt-2">
+      <label for="password" class="text-sm font-semibold" for="password"
+        >Password</label
+      >
+      <input
+        (input)="typeAccount($event)"
+        [style]="typing ? '' : 'border: 1px solid #ff3434'"
+        [(ngModel)]="password"
+        id="password"
+        type="password"
+        class="input cursor-text"
+        placeholder="Enter your password"
+      />
+      <p class="absolute text-sm text-red-500">
+        {{ loginAlertMessage }}
+      </p>
+
+      <!-- remember -->
+      <div class="pt-10 flex justify-between items-center">
+        <div class="remember">
+          <input [(ngModel)]="rememberMe" type="checkbox" id="remember" />
+          <label class="pl-2 cursor-pointer" for="remember">Remember me</label>
+        </div>
+        <!--  Language -->
+        <!-- <select
+          name=""
+          id=""
+          class="border rounded-sm py-1 px-5 focus:border-blackColor focus:outline-none"
+        >
+          <option value="chinese">中文</option>
+          <option value="eng">English</option>
+        </select> -->
+      </div>
+
+      <!-- login btn -->
+      @if (loading) {
+      <div
+        class="btn"
+        style="
+          margin-top: 30px;
+          padding: 7px;
+          cursor: auto;
+          background-color: black;
+          opacity: 0.5;
+        "
+      >
+        <div
+          class="mx-auto w-5 h-5 mt-[2px] border-2 border-white border-t-transparent rounded-full animate-spin"
+        ></div>
+      </div>
+      }@else {
+      <div
+        (click)="checkLogin()"
+        class="btn cursor-pointer"
+        matRipple
+        [matRippleColor]="rippleColor"
+        style="margin-top: 30px"
+      >
+        <div class="cursor-pointer p-[1px]">Login</div>
+      </div>
+      }
+      <div
+        class="btn-outline cursor-pointer"
+        matRipple
+        [matRippleColor]="rippleColor"
+        style="padding-top: 5px"
+      >
+        <div (click)="closePopup()" class="cursor-pointer">No, Later</div>
+      </div>
+    </div>
+  </div>
+</div>

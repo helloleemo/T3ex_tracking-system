@@ -1,0 +1,39 @@
+<div
+  class="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-blackColor/50 z-20"
+>
+  <div class="relative p-10 w-[400px] bg-white rounded-lg shadow-lg">
+    <div class="comfirmation flex items-center gap-5">
+      <!-- close -->
+      <div (click)="closePopup()" class="absolute top-0 right-0 p-3">
+        <mat-icon
+          class="hover:text-blackColor/70 text-blackColor/50 cursor-pointer"
+          >close</mat-icon
+        >
+      </div>
+      <!-- Content -->
+      <div class="icon">
+        <mat-icon
+          style="width: 40px; height: 40px"
+          class="text-blackColor/50 text-[40px]"
+          >logout</mat-icon
+        >
+      </div>
+      <div class="title">
+        <p class="font-bold text-2xl">Logout Confirmation</p>
+        <p>Do you want to logout?</p>
+      </div>
+    </div>
+
+    <div class="btngroup flex gap-3 mt-5">
+      <div
+        (click)="logout()"
+        matRipple
+        [matRippleColor]="rippleColor"
+        class="btn"
+      >
+        Yes
+      </div>
+      <div (click)="closePopup()" matRipple class="btn-outline p-0 m-0">No</div>
+    </div>
+  </div>
+</div>

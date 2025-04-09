@@ -1,0 +1,210 @@
+<!-- Search -->
+<div class="searchGroup w-full flex items-center justify-between p-0">
+  <div class="flex">
+    <div class="search relative border rounded-md border-1 border-[#b9b9b9]">
+      <div class="border flex searchContent rounded-md">
+        <!-- tracking number -->
+        <div
+          class="inputTrackingNum flex flex-nowrap justify-center items-center relative pr-3 pl-1"
+        >
+          <mat-icon
+            class="text-blackColor/80 mr-1 pr-3 text-[20px]"
+            style="width: 20px; height: 20px"
+            >search</mat-icon
+          >
+
+          <input
+            [(ngModel)]="trackingNumber"
+            [placeholder]="placeHolderText"
+            [class]="isInputError ? '' : 'border-red-500'"
+            class="cursor-text w-full pr-6 focus:outline-none focus:ring-transparent text-blackColor py-1"
+            type="text"
+          />
+          <!-- tracking Type -->
+
+          <div class="relative">
+            <select
+              [(ngModel)]="numberType"
+              class="relative cursor-pointer focus:outline-none"
+              name=""
+              id=""
+            >
+              @for (item of numberTypeOptions; track $index) {
+              <option [value]="item.value">{{ item.viewValue }}</option>
+              }
+            </select>
+            <div
+              class="diver absolute -top-[5px] -left-5 bg-[#b9b9b9] h-[35px] w-[1px]"
+            ></div>
+          </div>
+          <div
+            class="diver absolute -top-[1px] right-0 bg-[#b9b9b9] h-[35px] w-[1px]"
+          ></div>
+        </div>
+
+        <!-- datepicker - Start date -->
+        <div class="startDate relative flex">
+          <input
+            [(ngModel)]="startDate"
+            type="date"
+            class="w-full px-2 focus:outline-none focus:ring-transparent text-blackColor placeholder-transparent bg-white"
+            [min]="minDate"
+          />
+        </div>
+        <mat-icon
+          class="text-blackColor/80 mx-3 pt-[7px] text-[20px]"
+          style="width: 20px; height: 30px"
+        >
+          arrow_forward
+        </mat-icon>
+        <!-- datepicker - End date -->
+        <div class="endDate relative flex">
+          <input
+            [(ngModel)]="endDate"
+            type="date"
+            class="w-full mr-2 focus:outline-none focus:ring-transparent text-blackColor placeholder-transparent bg-white"
+            [min]="minDate"
+          />
+          <div
+            class="diver absolute -top-[1px] right-0 bg-[#b9b9b9] h-[35px] w-[1px]"
+          ></div>
+        </div>
+
+        <!-- search status -->
+        <select
+          [(ngModel)]="dateType"
+          name="searchStatus"
+          id="searchStatus"
+          class="searchStatus cursor-pointer focus:outline-none px-3 border-none bg-transparent"
+        >
+          @for (item of searchDateTypes; track $index) {
+          <option [value]="item.value">{{ item.viewValue }}</option>
+          }
+        </select>
+
+        <!-- Search btn -->
+      </div>
+      <div class="flex gap-2 absolute -bottom-[35px]">
+        <div
+          class="flex gap-2 text-sm text-blackColor/80 text-nowrap"
+          [innerHTML]="searchResult"
+        ></div>
+        @if(searchResult !==''){
+        <div
+          (click)="clearAll()"
+          class="cursor-pointer text-blackColor/50 hover:bg-blackColor/5 border rounded-full w-fit px-5"
+        >
+          Clear
+        </div>
+
+        }
+      </div>
+    </div>
+    <div
+      (click)="searchClicked()"
+      matRipple
+      [matRippleColor]="rippleColor"
+      class="cursor-pointer hover:bg-blackColor/90 bg-blackColor/80 text-white font-medium px-10 pt-[6px] rounded-md ml-3 border-transparent"
+    >
+      Search
+    </div>
+  </div>
+
+  <!-- btn group -->
+  <div class="btnGroup flex items-center gap-5">
+    @for (item of sortByOptions; track $index) { @if (sortBy === item.value) {
+    <div
+      (click)="switchStatus(item.value)"
+      mat-raised-button
+      matRipple
+      class="btn-outline cursor-pointer text-nowrap flex items-center gap-2"
+      style="width: fit-content"
+    >
+      <mat-icon class="cursor-pointer">{{ item.icon }}</mat-icon>
+      <p class="cursor-pointer">
+        {{ item.viewValue }}
+      </p>
+    </div>
+    }}
+    <div
+      (click)="exportExcel()"
+      mat-raised-button
+      matRipple
+      class="btn-outline cursor-pointer text-nowrap flex items-center gap-2"
+      style="width: fit-content"
+    >
+      <mat-icon>download</mat-icon>
+      <p class="cursor-pointer">Export</p>
+    </div>
+  </div>
+</div>
+
+<!-- Paginations -->
+
+<!-- btn -->
+@if (pages.length > 0) {
+<div class="flex items-center justify-end space-x-2 mt-4">
+  <!-- back -->
+  <button
+    (click)="changePage(currentPage - 1)"
+    [disabled]="currentPage === 1"
+    class="disabled:opacity-50 hover:bg-gray-100 rounded-md cursor-pointer px-1 py-1 hover:none disabled:cursor-default"
+  >
+    <mat-icon class="cursor-pointer">chevron_left</mat-icon>
+  </button>
+
+  <!-- paginations -->
+  @for (item of pages; track $index) {
+  <div class="text-blackColor/80 pb-2">
+    <span (click)="changePage(item)" class="px-2 py-1 pb-2">
+      <input
+        (keyup.enter)="renderPage(currentPage)"
+        class="w-[50px] border outline-none text-center"
+        type="text"
+        [ngModel]="currentPage"
+        (ngModelChange)="onPageInputChange($event)"
+      />
+    </span>
+    / {{ totalPages }} pages
+  </div>
+  }
+
+  <!-- nect page -->
+  <button
+    matRipple
+    [matRippleColor]="rippleColor"
+    (click)="changePage(currentPage + 1)"
+    [disabled]="currentPage === totalPages"
+    class="disabled:opacity-50 hover:bg-gray-100 rounded-md cursor-pointer px-1 py-1 hover:none disabled:cursor-default"
+  >
+    <mat-icon class="disabled:cursor-default cursor-pointer"
+      >chevron_right</mat-icon
+    >
+  </button>
+</div>
+} @else {
+<div class="flex items-center justify-end space-x-2 mt-4">
+  <!-- back -->
+  <button
+    [disabled]="true"
+    class="disabled:opacity-50 rounded-md px-1 py-1 hover:none disabled:cursor-default"
+  >
+    <mat-icon class="">chevron_left</mat-icon>
+  </button>
+
+  <!-- paginations -->
+  <div class="text-blackColor/80 pb-2">
+    <span class="px-2 py-1 pb-2">1</span>
+    / 1 pages
+  </div>
+
+  <!-- nect page -->
+  <button
+    [disabled]="true"
+    class="disabled:opacity-50 rounded-md px-1 py-1 hover:none disabled:cursor-default"
+  >
+    <mat-icon class="disabled:cursor-default">chevron_right</mat-icon>
+  </button>
+</div>
+
+}

@@ -1,0 +1,91 @@
+<div class="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 z-50">
+  <div
+    class="frame rounded-md bg-white p-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] lg:w-[50vw] h-[80vh] flex justify-center items-center"
+  >
+    <div class="absolute top-5 right-5">
+      <mat-icon
+        (click)="sendPrivatePolicy()"
+        style="width: 35px; height: 35px; cursor: pointer"
+        class="hover:bg-blackColor/10 text-blackColor/60 rounded-full p-1 text-[26px]"
+        >close</mat-icon
+      >
+    </div>
+    <div
+      class="text p-5 h-[70svh] overflow-y-auto bg-slate-50 flex flex-col gap-1"
+    >
+      <p class="text-2xl font-bold text-blackColor/90">Private Policy</p>
+      <div class="diver border-b"></div>
+      <p [class]="pStyle">
+        台驊國際控股股份有限公司（以下簡稱台驊控股）致力於保護您的隱私權，並提供最佳的產品及服務。我們的網站只為註冊使用者服務，您必須輸入個人資訊，我們才會提供您所要求的服務，在此種情況下進行的資料收集與使用，即為本隱私權政策所描述的內容。請詳讀完整的台驊控股隱私權政策。
+      </p>
+      <p [class]="hStyle">收集您的個人資訊</p>
+      <p [class]="pStyle">
+        當我們需要識別您的個人身份時，就會請您提供資訊（也就是個人資訊），也方便我們與您連絡。一般而言，當您要進一步查詢我們的服務及註冊帳號時，就會要求您輸入註冊資料。台驊控股會向您收集必要的個人及所屬機構的資訊，以便提供您所要求的服務。
+      </p>
+      <p [class]="hStyle">使用您的個人資訊</p>
+      <p [class]="pStyle">我們會基於下列主要用途來使用您的個人資訊：</p>
+      <ul>
+        <li class="text-blackColor/90">
+          1. 讓您不需要重複輸入個人資訊，使用網站更方便。
+        </li>
+        <li class="text-blackColor/90">
+          2. 協助您在台驊控股上，迅速找到服務或資訊。
+        </li>
+        <li class="text-blackColor/90">
+          3. 幫助我們建立及傳送對您最有意義的網站內容。
+        </li>
+        <li class="text-blackColor/90">
+          4. 提醒您有關台驊控股的最新消息、更新資訊，和其它新服務。
+        </li>
+      </ul>
+      <p [class]="pStyle">
+        台驊控股只有在下列基於法律需求，或基於誠信原則相信為必要時，才會在不另行通知下，透露您的個人資訊：
+      </p>
+      <ul>
+        <li class="text-blackColor/90">
+          (a) 遵守法律規定，或符合在台驊控股或網站上進行的合法程式；
+        </li>
+        <li class="text-blackColor/90">
+          (b) 保護及對抗台驊控股及其網站之權益或財產權；
+        </li>
+        <li class="text-blackColor/90">
+          (c)
+          在緊急狀況下採取行動，以保護台驊控股及其網站的使用者，或社會大眾的個人安全。
+        </li>
+      </ul>
+
+      <p [class]="hStyle">控管您的個人資訊</p>
+      <p [class]="pStyle">
+        當您註冊或是在其他情況下提供個人資訊時，台驊控股絕對不會在未征得您的許可之下，提供該資訊給協力廠商，但已明文列出的少數幾項作業除外。個人資訊只限於上述所列項目的使用。
+        註冊時您也可以告訴我們，您希望台驊控股如何與您連絡，或是否要讓台驊控股與您連絡。台驊控股可能會定期以電子郵件通知您有關所要求服務的資訊。因為這些郵件是您所選取服務的重要部份，您無法選擇取消訂閱這些郵件。
+      </p>
+      <p [class]="hStyle">保障您的個人資訊安全</p>
+      <p [class]="pStyle">
+        驊控股確實遵守您的要求和選擇，嚴密地保護您個人資訊的安全。我們採取嚴密的措施，保護您的個人資料，避免流失、誤用、未經授權存取或揭露、更改或損毀。
+        除了上述說明的情況以外，絕對不會在未征得您的同意之前，將您的個人資訊透露給公司以外的任何人。在公司內部，您的個人資料是儲存在有密碼控制的伺服器中，只限於少數人存取。您的個人資訊可能會在臺灣或是在台驊控股或相關企業機構或代理商所在地進行儲存或處理作業。
+      </p>
+      <p [class]="hStyle">使用 Cookie</p>
+      <p [class]="pStyle">
+        為了確保我們所出版的內容確實是使用者所需要和想要的，台驊國際可能會利用
+        Cookie
+        來收集網站造訪統計數字。我們不會追蹤記錄個人使用網站的情形。有人造訪網站時，就會在用戶的電腦上放置
+        Cookie（若用戶接受 Cookie 時），若用戶先前已造訪過該網站，即讀取該
+        Cookie。
+      </p>
+      <p [class]="hStyle">本政策的變更</p>
+      <p [class]="pStyle">
+        台驊國際會不定期更新這份隱私權政策。更新時，我們也會在隱私權政策的下端修訂「最後更新」日期。關於本政策的變更內容，台驊國際會在網站上放置明顯的佈告，通知您。
+      </p>
+      <p [class]="hStyle">連絡資訊</p>
+      <p [class]="pStyle">
+        台驊控股歡迎您提供有關本隱私權政策的寶貴意見，請電郵致
+        <a href="mailto:spokesman@t3ex-group.com"
+          >spokesman&#64;t3ex-group&#46;com</a
+        >
+
+        郵寄信件與我們連絡。
+      </p>
+      <p [class]="hStyle">台驊國際控股股份有限公司</p>
+    </div>
+  </div>
+</div>

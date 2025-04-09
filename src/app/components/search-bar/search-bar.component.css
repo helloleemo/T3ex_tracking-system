@@ -1,0 +1,10 @@
+select {
+  -webkit-appearance: none; /* Chrome & Safari */
+  -moz-appearance: none; /* Firefox */
+  appearance: none; /* 通用 */
+}
+
+/* 移除 IE 和 Edge 預設箭頭 */
+select::-ms-expand {
+  display: none;
+}

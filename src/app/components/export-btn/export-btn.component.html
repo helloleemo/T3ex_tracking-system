@@ -1,0 +1,32 @@
+@if (isLoading) {
+<div
+  matRipple
+  class="btn-outline"
+  style="
+    border: 1px solid #b9b9b9;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 16px;
+    color: #3d3d3d;
+    padding: 2px 30px;
+    margin: 8px 0;
+    cursor: pointer;
+    width: 100%;
+  "
+>
+  <div
+    class="mx-auto w-5 h-5 mt-[2px] border-2 border-blackColor/40 border-t-transparent rounded-full animate-spin"
+  ></div>
+</div>
+
+} @else{
+<div (click)="exportToPDF()" matRipple class="btn-outline">Export</div>
+}
+
+<div #exportTemplate style="display: none">
+  <app-export-template
+    (isLoadingOutput)="isLoading = $event"
+    [isLoading]="isLoading"
+    [trackingNumber]="trackingNumber"
+  ></app-export-template>
+</div>

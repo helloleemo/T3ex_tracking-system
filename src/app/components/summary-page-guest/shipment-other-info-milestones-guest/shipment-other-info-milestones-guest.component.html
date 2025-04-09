@@ -1,0 +1,100 @@
+<!---------- Milestone ---------->
+<div class="title flex items-center gap-2">
+  <mat-icon class="text-blackColor/50">folder</mat-icon>
+  <p class="text-lg text-blackColor/90 font-semibold">Milestones</p>
+</div>
+
+@if (isSkeletonLoading) {
+<div class="skeleton-loading pt-5">
+  <div class="grid grid-cols-1 gap-5">
+    @for (item of [1,2, 3]; track $index) {
+    <div class="flex flex-col gap-5">
+      <div [class]="skeletonClass"></div>
+    </div>
+    }
+  </div>
+  <!-- diver -->
+  <div class="border-b-[1px] border-blackColor/20 py-5"></div>
+</div>
+}@else{
+<!-- Milestones -->
+@if (milestoneCols.length >0) {
+<table class="w-full border-collapse mb-8">
+  <thead>
+    <tr class="text-blackColor/90 font-semibold bg-blackColor/5">
+      @for (item of milestoneCols; track $index) {
+      <th class="px-4 py-4 text-start w-auto">{{ item }}</th>
+      }
+    </tr>
+  </thead>
+  <tbody>
+    @for (item of milestones; track $index) {
+    <tr class="text-blackColor/70 font-normal border-b">
+      <td class="px-4 py-2 text-start">{{ $index + 1 }}</td>
+      <td class="px-4 py-2 text-start">{{ item.Milestone }}</td>
+      <td class="px-4 py-2 text-start">
+        {{ item.DateTime }}
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>
+}@else {
+<div>
+  <p class="text-blackColor/50 text-sm px-5 flex">
+    <mat-icon class="text-blackColor/50 text-[18px]">search</mat-icon>
+    No data found.
+  </p>
+</div>
+} }
+
+<!---------- Flight ---------->
+<div class="title flex items-center gap-2">
+  <mat-icon class="text-blackColor/50">folder</mat-icon>
+  <p class="text-lg text-blackColor/90 font-semibold">Flight Info</p>
+</div>
+@if (isSkeletonLoading) {
+<div class="skeleton-loading pt-5">
+  <div class="grid grid-cols-1 gap-5">
+    @for (item of [1,2, 3]; track $index) {
+    <div class="flex flex-col gap-5">
+      <div [class]="skeletonClass"></div>
+    </div>
+    }
+  </div>
+  <!-- diver -->
+  <div class="border-b-[1px] border-blackColor/20 py-5"></div>
+</div>
+}@else{ @if(flightCols.length !== 0) {
+<table class="w-full border-collapse mb-8 table-fixed">
+  <thead>
+    <tr class="text-blackColor/90 font-semibold bg-blackColor/5">
+      @for (item of flightCols; track $index) {
+      <th class="px-4 py-4 text-start">{{ item }}</th>
+      }
+    </tr>
+  </thead>
+  <tbody>
+    @for (item of flightSegments; track $index) {
+    <tr class="text-blackColor/70 font-normal border-b">
+      <td class="px-4 py-2 text-start">{{ item.SeqNo || "-" }}</td>
+      <td class="px-4 py-2 text-start">{{ item.OriginCode || "-" }}</td>
+      <td class="px-4 py-2 text-start">{{ item.DestCode || "-" }}</td>
+      <td class="px-4 py-2 text-start">{{ item.ETD || "-" }}</td>
+      <td class="px-4 py-2 text-start">{{ item.ATD || "-" }}</td>
+      <td class="px-4 py-2 text-start">{{ item.ETA || "-" }}</td>
+      <td class="px-4 py-2 text-start">{{ item.ATA || "-" }}</td>
+    </tr>
+    }
+  </tbody>
+</table>
+}@else {
+<div>
+  <p class="text-blackColor/50 text-sm px-5 flex">
+    <mat-icon class="text-blackColor/50 text-[18px]">search</mat-icon>
+    No data found.
+  </p>
+</div>
+} }
+
+<!---------- Dimension ---------->

@@ -1,0 +1,27 @@
+<div class="footer relative bottom-0 w-full">
+  <div class="bg-blackColor/80">
+    <div class="container mx-auto max-w-screen-xl p-2">
+      <div class="flex justify-between items-center">
+        <div class="logo flex">
+          <p class="text-white font-normal">
+            2025 THI Inc. All rights reserved
+          </p>
+        </div>
+        <div class="contact flex">
+          <p
+            (click)="openPrivatePolicy()"
+            class="text-white font-normal underline cursor-pointer"
+          >
+            Private policy
+          </p>
+          @if (isShowPrivatePolicy) {
+          <app-private-policy
+            [receivedData]="isShowPrivatePolicy"
+            (closePopup)="closePrivatePolicy($event)"
+          ></app-private-policy>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="otherDetails pt-3 pb-[50px]">
+  <div class="bg-white rounded-md p-10">
+    <div class="detail-menu flex justify-between mb-5 border-b-2">
+      <div class="flex gap-x-2 relative">
+        @for (item of menu; track $index) {
+        <p
+          (click)="menuSelected(item, $index)"
+          [class]="selectedMenu === item ? '' : ' text-blackColor/50'"
+          class="cursor-pointer text-xl transition-all font-semibold hover:text-blackColor/90 py-0 pb-3 px-3 mr-1 m-0"
+        >
+          {{ item }}
+        </p>
+        }
+        <div
+          [class]="
+            selectedMenu === 'Shipment Details'
+              ? 'border-primary w-[180px]'
+              : selectedMenu === 'Milestones'
+              ? 'border-primary translate-x-[185px] w-[125px]'
+              : 'border-white'
+          "
+          class="absolute border-b-4 pt-[38px] transition-all"
+        ></div>
+      </div>
+    </div>
+    <div class="min-h-[380px]">
+      @if (selectedMenu === 'Shipment Details') {
+      <app-shipment-other-info-details-guest
+        [trackingNo]="trackingNo"
+      ></app-shipment-other-info-details-guest>
+      } @if (selectedMenu === 'Milestones') {
+      <app-shipment-other-info-milestones-guest
+        [trackingNo]="trackingNo"
+      ></app-shipment-other-info-milestones-guest>
+      }
+    </div>
+  </div>
+</div>

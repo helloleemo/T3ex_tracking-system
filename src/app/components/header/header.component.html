@@ -1,0 +1,91 @@
+<div class="header bg-white px-2">
+  <div class="menu pt-2 flex items-end mx-auto max-w-screen-xl justify-between">
+    <div routerLink="/login" class="logo cursor-pointer flex pb-2 items-center">
+      <img class="object-contain h-[30px]" src="t3ex-logo.svg" alt="logo" />
+      <p class="cursor-pointer text-xl pl-2 font-semibold text-blackColor">
+        Tracking System
+      </p>
+    </div>
+    <div class="item">
+      <ul class="flex gap-5">
+        @for (item of menuList; track $index) {
+        <li
+          (click)="selectMenu(item.name, item.routerLink)"
+          [class]="
+            selectedMenu === item.name
+              ? 'text-blackColor'
+              : 'text-blackColor/70'
+          "
+          class="cursor-pointer font-medium hover:text-blackColor/90 px-3 mr-1"
+        >
+          {{ item.name }}
+        </li>
+        <div
+          [class]="
+            selectedMenu === 'Shipment List'
+              ? 'translate-x-[190px] w-[120px]'
+              : 'translate-x-[0px] w-[160px]'
+          "
+          class="absolute transform-all duration-300 transition-all border-primary border-b-4 py-4"
+        ></div>
+        }
+
+        <!-- (mouseleave)="toggleLogout = false" -->
+        <li class="login cursor-pointer -translate-y-1 flex items-center gap-2">
+          @if (account !== '' || userToken!=='' ) {
+          <p class="pl-1">
+            {{ account }}
+          </p>
+          <div
+            matTooltip="Logout"
+            matTooltipPosition="above"
+            style="width: 28px; height: 28px"
+            class="icon hover:bg-blackColor/10 rounded-full p-[5px]"
+          >
+            <mat-icon
+              (click)="logoutBtn()"
+              class="material-icons-outlined text-[18px] text-blackColor/80 cursor-pointer"
+              >logout</mat-icon
+            >
+          </div>
+          }@else {
+          <div
+            (click)="loginBtn()"
+            matRipple
+            [matRippleColor]="rippleColor"
+            class="flex items-center gap-x-1 mb-2 border rounded-md py-1 px-2 text-blackColor/60 hover:text-blackColor/70 hover:bg-blackColor/5 transition-all"
+          >
+            <mat-icon
+              style="width: 18px; height: 18px"
+              class="material-icons-outlined cursor-pointer text-sm"
+              >person</mat-icon
+            >
+            <p class="cursor-pointer p-0 m-0 text-sm">Login</p>
+          </div>
+          }
+        </li>
+        <li
+          class="-translate-y-1 flex items-center cursor-pointer hover:text-blackColor/90"
+        >
+          <mat-icon class="text-blackColor/80 cursor-pointer">
+            <!-- language -->
+          </mat-icon>
+          <p class="pl-1 py-3">
+            <!-- English -->
+          </p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+@if (toggleLogout) {
+<app-logout-popup
+  (toggleLogoutChange)="toggleLogoutChange($event)"
+  [toggleLogout]="toggleLogout"
+></app-logout-popup
+>} @if (toggleLogin) {
+<app-login-popup
+  (toggleLoginChange)="toggleLoginChange($event)"
+  [toggleLogin]="toggleLogin"
+></app-login-popup
+>}

@@ -1,0 +1,124 @@
+@if (isSkeletonLoading) {
+<div class="skeleton-loading p-10">
+  <div class="grid grid-cols-4 gap-5">
+    @for (item of [1,2,3,4]; track $index) {
+    <div class="flex flex-col gap-5">
+      <div [class]="skeletonClass"></div>
+    </div>
+    }
+  </div>
+  <!-- diver -->
+  <div class="border-b-[1px] border-blackColor/20 py-5"></div>
+</div>
+} @else{
+
+<!--------------- Process graphics start --------------->
+<!-- main info -->
+<div
+  class="mainInfo flex gap-x-28 justify-start p-10 border-b-[1px] border-blackColor/20"
+>
+  <div id="HAWBno">
+    <p class="text-blackColor/50 font-medium">HAWB No.</p>
+    <p class="text-2xl font-semibold">{{ shipmentInfo.HAWBNo }}</p>
+  </div>
+  <div id="MAWB">
+    <p class="text-blackColor/50 font-medium">MAWB No.</p>
+    <p class="text-2xl font-semibold">{{ shipmentInfo.MAWBNo }}</p>
+  </div>
+  <div id="origin">
+    <p class="text-blackColor/50 font-medium">Origin</p>
+    <p class="font-medium text-2xl">
+      <span>{{ shipmentInfo.OriginCode }}</span>
+    </p>
+  </div>
+  <div id="destination">
+    <p class="text-blackColor/50 font-medium">Destination</p>
+    <p class="font-medium text-2xl">
+      <span>{{ shipmentInfo.DestCode }}</span>
+    </p>
+  </div>
+  <app-export-btn
+    class="ml-auto"
+    [trackingNumber]="trackingNumber"
+    exportElementId="export-content"
+    fileName="shipment-data.pdf"
+  ></app-export-btn>
+</div>
+} @if (isSkeletonLoading) {
+<div class="skeleton-loading p-10">
+  <div class="flex flex-col gap-5">
+    <div [class]="skeletonClass"></div>
+    <div [class]="skeletonClass"></div>
+  </div>
+  <!-- --------------- -->
+  <div class="grid grid-cols-5 gap-5 pt-5">
+    @for (item of [1,2,3,4,5]; track $index) {
+    <div class="flex flex-col gap-5">
+      <div [class]="skeletonClass"></div>
+      <div [class]="skeletonClass"></div>
+      <div [class]="skeletonClass"></div>
+    </div>
+    }
+  </div>
+  <!-- --------------- -->
+
+  <!-- diver -->
+  <div class="border-b-[1px] border-blackColor/20 py-5"></div>
+</div>
+} @else{
+<!-- Process -->
+<div class="process flex justify-between items-start p-10">
+  @for (item of processList; track $index){
+  <div class="process-item w-full">
+    <div class="icons flex justify-between items-center">
+      <mat-icon
+        [ngClass]="getStatusClass(item.title)"
+        class="material-symbols-outlined text-[45px] transition-all duration-500"
+        style="height: 50px; width: 60px"
+        >{{ item.icon }}</mat-icon
+      >
+      @if (isSkeletonLoading) {
+      <div [class]="skeletonClass"></div>
+      }@else{
+      <div
+        [ngClass]="getLineClass(item.title)"
+        class="line w-full h-[3px] transition-all duration-500"
+      ></div>
+      }
+    </div>
+    <div class="description">
+      <p class="text-blackColor/50 font-medium text-lg mb-2">
+        {{ item.title }}
+      </p>
+
+      @if (item.dateTime) {
+      <p class="mt-0">{{ item.dateTime }}</p>
+      } @if (item.flightNo && item.flightNo != null) {
+      <p class="text-blackColor/50 font-medium mb-0">Flight No.</p>
+      <p class="mt-0">{{ item.flightNo }}</p>
+      <p class="text-blackColor/50 font-medium mb-0">Origin / Destination</p>
+      <p class="mt-0">
+        <span>{{ item.originCode }}</span> / <span>{{ item.destCode }}</span>
+      </p>
+      } @if (item.imgUrls && item.flightNo != null) {
+      <div matRipple class="btn-outline" style="width: fit-content">
+        View Images
+      </div>
+      }
+    </div>
+  </div>
+  }
+  <!-- completed -->
+  <div class="completed">
+    <mat-icon
+      [class]="
+        lastStatus == 'Completed' ? 'text-primary' : 'text-blackColor/40'
+      "
+      class="material-symbols-outlined text-[45px] transition-all duration-300 text-blackColor/40"
+      style="height: 50px; width: 60px"
+      >task_alt</mat-icon
+    >
+    <p class="text-blackColor/50 font-medium mb-0">Completed</p>
+  </div>
+</div>
+}

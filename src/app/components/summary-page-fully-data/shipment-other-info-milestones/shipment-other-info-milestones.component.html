@@ -1,0 +1,146 @@
+<!---------- Milestone ---------->
+<div class="title flex items-center gap-2">
+  <mat-icon class="text-blackColor/50">folder</mat-icon>
+  <p class="text-lg text-blackColor/90 font-semibold">Milestones</p>
+</div>
+
+@if (isSkeletonLoading) {
+<div class="skeleton-loading flex flex-col gap-5 pt-5 pb-8">
+  @for (item of [1,2,3,4,5]; track $index) {
+  <div [class]="skeletonClass"></div>
+  }
+</div>
+}@else{ @if (isError) {
+<div>
+  <p class="text-blackColor/50 text-sm px-5 flex">
+    <mat-icon class="text-blackColor/50 text-[18px]">search</mat-icon>
+    No Milestones found.
+  </p>
+</div>
+
+}@else {
+<table class="w-full border-collapse mb-8 table-auto">
+  <thead>
+    <tr class="text-blackColor/90 font-semibold bg-blackColor/5">
+      @for (item of milestoneCols; track $index) {
+      <th class="px-4 py-4 text-start w-auto">{{ item }}</th>
+      }
+    </tr>
+  </thead>
+  <tbody>
+    @for (item of milestones; track $index) {
+    <tr class="text-blackColor/70 font-normal border-b">
+      <td class="px-4 py-2 text-start w-[25px]">{{ $index + 1 }}</td>
+      <td class="px-4 py-2 text-start">{{ item.Milestone }}</td>
+      <td class="px-4 py-2 text-start">{{ item.DateTime }}</td>
+      <td class="px-4 py-2 text-start">
+        @if (item.Imgs.length !== 0) {
+        <button
+          (click)="getImg(item.Imgs)"
+          matRipple
+          class="btn-outline"
+          style="width: fit-content"
+        >
+          View</button
+        >} @if (isViewImg){
+        <app-view-img
+          (closeClicked)="getClosedStatus($event)"
+          [imgList]="newImagesList"
+        ></app-view-img>
+        }
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>
+} }
+
+<!---------- Flight ---------->
+<div class="title flex items-center gap-2">
+  <mat-icon class="text-blackColor/50">folder</mat-icon>
+  <p class="text-lg text-blackColor/90 font-semibold">Flight Info</p>
+</div>
+
+@if (isSkeletonLoading) {
+<div class="skeleton-loading flex flex-col gap-5 pt-5 pb-8">
+  @for (item of [1,2,3]; track $index) {
+  <div [class]="skeletonClass"></div>
+  }
+</div>
+}@else{ @if(flightSegments != [] && !isError){
+<table class="w-full border-collapse mb-8 table-auto">
+  <thead>
+    <tr class="text-blackColor/90 font-semibold bg-blackColor/5">
+      @for (item of flightCols; track $index) {
+      <th class="px-4 py-4 text-start">{{ item }}</th>
+      }
+    </tr>
+  </thead>
+  <tbody>
+    @for (item of flightSegments; track $index) {
+    <tr class="text-blackColor/70 font-normal border-b">
+      <td class="px-4 py-2 text-start">{{ item.SeqNo || "-" }}</td>
+      <td class="px-4 py-2 text-start">{{ item.FlightNo || "-" }}</td>
+      <td class="px-4 py-2 text-start">{{ item.OriginCode || "-" }}</td>
+      <td class="px-4 py-2 text-start">{{ item.DestCode || "-" }}</td>
+      <td class="px-4 py-2 text-start">{{ item.ETD || "-" }}</td>
+      <td class="px-4 py-2 text-start">{{ item.ATD || "-" }}</td>
+      <td class="px-4 py-2 text-start">{{ item.ETA || "-" }}</td>
+      <td class="px-4 py-2 text-start">{{ item.ATA || "-" }}</td>
+    </tr>
+    }
+  </tbody>
+</table>
+} @else{
+<div>
+  <p class="text-blackColor/50 text-sm px-5 flex">
+    <mat-icon class="text-blackColor/50 text-[18px]">search</mat-icon>
+    No filght found.
+  </p>
+</div>
+} }
+
+<!---------- Dimension ---------->
+
+<div class="title flex items-center gap-2">
+  <mat-icon class="text-blackColor/50">folder</mat-icon>
+  <p class="text-lg text-blackColor/90 font-semibold">Dimensions</p>
+</div>
+
+@if (isSkeletonLoading) {
+<div class="skeleton-loading flex flex-col gap-5 pt-5 pb-8">
+  @for (item of [1,2,3]; track $index) {
+  <div [class]="skeletonClass"></div>
+  }
+</div>
+}@else{ @if(dimensions !== [] && !isError && dimensions.length > 0){
+<table class="w-full border-collapse mb-8">
+  <thead>
+    <tr class="text-blackColor/90 font-semibold bg-blackColor/5">
+      <th class="px-4 py-4 text-center w-auto">PCS</th>
+      <th class="px-4 py-4 text-center w-auto">Length</th>
+      <th class="px-4 py-4 text-center w-auto">Width</th>
+      <th class="px-4 py-4 text-center w-auto">Height</th>
+      <th class="px-4 py-4 text-center w-auto">VW</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (item of dimensions; track $index) {
+    <tr class="text-blackColor/70 font-normal border-b">
+      <td class="px-4 py-2 text-center w-auto">{{ item.PCS }}</td>
+      <td class="px-4 py-2 text-center w-auto">{{ item.Length }}</td>
+      <td class="px-4 py-2 text-center w-auto">{{ item.Width }}</td>
+      <td class="px-4 py-2 text-center w-auto">{{ item.Height }}</td>
+      <td class="px-4 py-2 text-center w-auto">{{ item.VW }}</td>
+    </tr>
+    }
+  </tbody>
+</table>
+}@else{
+<div>
+  <p class="text-blackColor/50 text-sm px-5 flex">
+    <mat-icon class="text-blackColor/50 text-[18px]">search</mat-icon>
+    No dimensions found.
+  </p>
+</div>
+}}

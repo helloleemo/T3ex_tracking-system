@@ -1,0 +1,262 @@
+@if (isSkeletonLoading) {
+<div class="skeleton-loading p-0">
+  <div class="grid grid-cols-3 gap-3">
+    @for (item of [1,2,3]; track $index) {
+    <div class="flex flex-col gap-10">
+      <div [class]="skeletonClass"></div>
+      <div [class]="skeletonClass"></div>
+      <div [class]="skeletonClass"></div>
+      <div [class]="skeletonClass"></div>
+      <div [class]="skeletonClass"></div>
+    </div>
+    }
+  </div>
+  <!-- diver -->
+  <div class="border-b-[1px] border-blackColor/20 py-5"></div>
+</div>
+}@else {
+<div class="grid grid-cols-[0.7fr_1fr] gap-3">
+  <!------------- 1 ------------->
+  <div class="col-left p-1">
+    <table>
+      <tbody>
+        <tr class="p-1 align-top">
+          <td class="text-lg font-bold p-1">MAWB No.</td>
+          <td class="text-lg font-normal p-1 text-blackColor/60">
+            {{ shipmentDetails.ShipmentInfo.MAWBNo || "-" }}
+            <span class="relative">
+              @if (shipmentDetails.ShipmentInfo.MAWBNo) {<mat-icon
+                (click)="copyText(shipmentDetails.ShipmentInfo.MAWBNo, $event)"
+                class="copyIcon text-[16px] relative top-[8px] left-[2px] hover:text-blackColor cursor-pointer text-blackColor/30"
+                >content_copy</mat-icon
+              >}
+            </span>
+          </td>
+        </tr>
+        <tr class="p-1 align-top">
+          <td class="text-lg font-bold p-1">HAWB No.</td>
+          <td class="text-lg font-normal p-1 text-blackColor/60">
+            {{ shipmentDetails.ShipmentInfo.HAWBNo || "-" }}
+            <span class="relative">
+              @if (shipmentDetails.ShipmentInfo.HAWBNo) {<mat-icon
+                (click)="copyText(shipmentDetails.ShipmentInfo.HAWBNo, $event)"
+                class="copyIcon text-[16px] relative top-[8px] left-[2px] hover:text-blackColor cursor-pointer text-blackColor/30"
+                >content_copy</mat-icon
+              >}
+            </span>
+          </td>
+        </tr>
+
+        <!-- 分隔線 -->
+        <tr class="h-5"></tr>
+
+        <tr class="p-1 align-top">
+          <td class="text-lg font-bold p-1">Ship Date</td>
+          <td class="text-lg font-normal p-1 text-blackColor/60">
+            {{ shipmentDetails.ShipDate || "-" }}
+            <span class="relative">
+              @if (shipmentDetails.ShipDate) {<mat-icon
+                (click)="copyText(shipmentDetails.ShipDate, $event)"
+                class="copyIcon text-[16px] relative top-[8px] left-[2px] hover:text-blackColor cursor-pointer text-blackColor/30"
+                >content_copy</mat-icon
+              >}
+            </span>
+          </td>
+        </tr>
+        <tr class="p-1 align-top">
+          <td class="text-lg font-bold p-1">Trading Type</td>
+          <td class="text-lg font-normal p-1 text-blackColor/60">
+            {{ shipmentDetails.TradingType || "-" }}
+            <span class="relative">
+              @if (shipmentDetails.TradingType) {<mat-icon
+                (click)="copyText(shipmentDetails.TradingType, $event)"
+                class="copyIcon text-[16px] relative top-[8px] left-[2px] hover:text-blackColor cursor-pointer text-blackColor/30"
+                >content_copy</mat-icon
+              >}
+            </span>
+          </td>
+        </tr>
+        <tr class="p-1 align-top">
+          <td class="text-lg font-bold p-1">Payment</td>
+          <td class="text-lg font-normal p-1 text-blackColor/60">
+            {{ shipmentDetails.Payment || "-" }}
+            <span class="relative">
+              @if (shipmentDetails.Payment) {<mat-icon
+                (click)="copyText(shipmentDetails.Payment, $event)"
+                class="copyIcon text-[16px] relative top-[8px] left-[2px] hover:text-blackColor cursor-pointer text-blackColor/30"
+                >content_copy</mat-icon
+              >}
+            </span>
+          </td>
+        </tr>
+
+        <!-- 分隔線 -->
+        <tr class="h-5"></tr>
+
+        <tr class="p-1 align-top">
+          <td class="text-lg font-bold p-1">PKG</td>
+          <td class="text-lg font-normal p-1 text-blackColor/60">
+            {{
+              shipmentDetails.Package.PKG +
+                " " +
+                shipmentDetails.Package.PKG_UNIT || "-"
+            }}
+            <span class="relative">
+              @if (shipmentDetails.Package.PKG) {<mat-icon
+                (click)="
+                  copyText(
+                    shipmentDetails.Package.PKG +
+                      ' ' +
+                      shipmentDetails.Package.PKG_UNIT,
+                    $event
+                  )
+                "
+                class="copyIcon text-[16px] relative top-[8px] left-[2px] hover:text-blackColor cursor-pointer text-blackColor/30"
+                >content_copy</mat-icon
+              >}
+            </span>
+          </td>
+        </tr>
+        <tr class="p-1 align-top">
+          <td class="text-lg font-bold p-1">GW</td>
+          <td class="text-lg font-normal p-1 text-blackColor/60">
+            {{
+              shipmentDetails.Package.GW +
+                " " +
+                shipmentDetails.Package.GW_UNIT || "-"
+            }}
+
+            <span class="relative">
+              @if (shipmentDetails.Package.GW) {<mat-icon
+                (click)="
+                  copyText(
+                    shipmentDetails.Package.GW +
+                      ' ' +
+                      shipmentDetails.Package.GW_UNIT,
+                    $event
+                  )
+                "
+                class="copyIcon text-[16px] relative top-[8px] left-[2px] hover:text-blackColor cursor-pointer text-blackColor/30"
+                >content_copy</mat-icon
+              >}
+            </span>
+          </td>
+        </tr>
+        <tr class="p-1 align-top">
+          <td class="text-lg font-bold p-1">VW</td>
+          <td class="text-lg font-normal p-1 text-blackColor/60">
+            {{
+              shipmentDetails.Package.VW +
+                " " +
+                shipmentDetails.Package.VW_UNIT || "-"
+            }}
+            <span class="relative">
+              @if (shipmentDetails.Package.VW) {<mat-icon
+                (click)="
+                  copyText(
+                    shipmentDetails.Package.VW +
+                      ' ' +
+                      shipmentDetails.Package.VW_UNIT,
+                    $event
+                  )
+                "
+                class="copyIcon text-[16px] relative top-[8px] left-[2px] hover:text-blackColor cursor-pointer text-blackColor/30"
+                >content_copy</mat-icon
+              >}
+            </span>
+          </td>
+        </tr>
+        <tr class="p-1 align-top">
+          <td class="text-lg font-bold p-1">CW</td>
+          <td class="text-lg font-normal p-1 text-blackColor/60">
+            {{
+              shipmentDetails.Package.CW +
+                " " +
+                shipmentDetails.Package.CW_UNIT || "-"
+            }}
+            <span class="relative">
+              @if (shipmentDetails.Package.CW) {<mat-icon
+                (click)="
+                  copyText(
+                    shipmentDetails.Package.CW +
+                      ' ' +
+                      shipmentDetails.Package.CW_UNIT,
+                    $event
+                  )
+                "
+                class="copyIcon text-[16px] relative top-[8px] left-[2px] hover:text-blackColor cursor-pointer text-blackColor/30"
+                >content_copy</mat-icon
+              >}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!------------- 2 ------------->
+  <ul>
+    <li class="p-1">
+      <p class="text-lg font-bold">Origin</p>
+      <p class="relative text-lg font-normal text-blackColor/60">
+        <span class="font-bold">{{
+          shipmentDetails.ShipmentInfo.OriginCode || "–"
+        }}</span>
+        -
+        <span
+          >{{ shipmentDetails.ShipmentInfo.OriginCity || "–" }},
+          {{ shipmentDetails.ShipmentInfo.OriginCountry || "–" }}</span
+        >
+        <span class="relative">
+          @if (shipmentDetails.ShipmentInfo.OriginCode
+          ||shipmentDetails.ShipmentInfo.OriginCity||
+          shipmentDetails.ShipmentInfo.OriginCountry) {<mat-icon
+            (click)="
+              copyText(
+                shipmentDetails.ShipmentInfo.OriginCode +
+                  ' - ' +
+                  shipmentDetails.ShipmentInfo.OriginCity +
+                  ', ' +
+                  shipmentDetails.ShipmentInfo.OriginCountry,
+                $event
+              )
+            "
+            class="copyIcon text-[16px] relative top-[8px] left-[2px] hover:text-blackColor cursor-pointer text-blackColor/30"
+            >content_copy</mat-icon
+          >}
+        </span>
+      </p>
+    </li>
+    <li class="text-lg font-bold p-1">
+      <p class="text-lg font-bold">Destination</p>
+      <p class="relative text-lg font-normal text-blackColor/60">
+        <span class="font-bold">{{
+          shipmentDetails.ShipmentInfo.DestCode || "–"
+        }}</span>
+        -
+        <span
+          >{{ shipmentDetails.ShipmentInfo.DestCity || "–" }},
+          {{ shipmentDetails.ShipmentInfo.DestCountry || "–" }}</span
+        >
+        <span class="relative">
+          @if (shipmentDetails.ShipmentInfo.DestCode
+          ||shipmentDetails.ShipmentInfo.DestCity||
+          shipmentDetails.ShipmentInfo.DestCountry) {<mat-icon
+            (click)="
+              copyText(
+                shipmentDetails.ShipmentInfo.DestCode +
+                  ' - ' +
+                  shipmentDetails.ShipmentInfo.DestCity +
+                  ', ' +
+                  shipmentDetails.ShipmentInfo.DestCountry,
+                $event
+              )
+            "
+            class="copyIcon text-[16px] relative top-[8px] left-[2px] hover:text-blackColor cursor-pointer text-blackColor/30"
+            >content_copy</mat-icon
+          >}
+        </span>
+      </p>
+    </li>
+  </ul>
+</div>
+}
